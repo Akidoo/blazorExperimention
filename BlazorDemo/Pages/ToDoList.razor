@@ -1,15 +1,17 @@
 ﻿@page "/todolist"
 
-<h3>ToDoList</h3>
 
-//Add Item
+
+<div class="alert alert-primary" role="alert">
+    <h3 class="text-center">FNSHR</h3>
+</div>
 
 <input type="text" @bind="newTask"/>
-<button @onclick="addTask">addTask</button>
+<button @onclick="addTask">Add Task</button>
 <ol>
     @foreach(string task in toDoList)
 {
-            <li>@task</li>
+            <li>@task <button @onclick="(() => completeTask(task))">Mark as complete</button></li>
 }
 </ol>
 
@@ -22,10 +24,15 @@
     {
         if(string.IsNullOrWhiteSpace(newTask) == false)
         {
-
+            toDoList.Add(newTask);
+            newTask = "";
         }
-        toDoList.Add(newTask);
-        newTask = "";
+       
+    }
+
+    void completeTask(string completedTask)
+    {
+        toDoList.Remove(completedTask);
     }
 }
 

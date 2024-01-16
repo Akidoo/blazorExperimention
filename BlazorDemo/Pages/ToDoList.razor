@@ -1,0 +1,31 @@
+﻿@page "/todolist"
+
+<h3>ToDoList</h3>
+
+//Add Item
+
+<input type="text" @bind="newTask"/>
+<button @onclick="addTask">addTask</button>
+<ol>
+    @foreach(string task in toDoList)
+{
+            <li>@task</li>
+}
+</ol>
+
+@code {
+
+    List<string> toDoList = new() { "empty list..." };
+    string newTask = "";
+
+    void addTask()
+    {
+        if(string.IsNullOrWhiteSpace(newTask) == false)
+        {
+
+        }
+        toDoList.Add(newTask);
+        newTask = "";
+    }
+}
+
